@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "SCouchDB-Voyage-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstName",
+		"address"
+	],
+	"name" : "SCVoyageDomainObject2",
+	"type" : "normal"
+}
