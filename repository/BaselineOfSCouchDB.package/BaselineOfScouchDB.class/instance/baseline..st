@@ -3,6 +3,7 @@ baseline: spec
 	<baseline>
 	spec for: #common do: [ 
 		self voyage: spec.
+		
 		spec
 		package: 'SCouchDB-JSON';
 		package: 'SCouchDB-Core' with: [ spec requires: #('SCouchDB-JSON' ) ];
