@@ -1,5 +1,5 @@
 script
 voyage: spec
 	spec 
-		baseline: 'Voyage-Model-Core' with: [ spec repository: 'github://pharo-nosql/voyage/mc' ];
+		baseline: 'Voyage' with: [ spec repository: 'github://pharo-nosql/voyage/mc' ];
 		import: 'Core'
