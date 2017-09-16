@@ -1,4 +1,4 @@
-script
+protocol
 groups: spec
 	spec 
 		group: 'default' with: #('SCouchDB-Core');
