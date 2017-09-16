@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCJsonObject",
+	"category" : "SCouchDB-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCDocument",
+	"type" : "normal"
+}

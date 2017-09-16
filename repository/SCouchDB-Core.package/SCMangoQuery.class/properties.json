@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Dictionary",
+	"category" : "SCouchDB-Core-MangoQueries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"database"
+	],
+	"name" : "SCMangoQuery",
+	"type" : "normal"
+}

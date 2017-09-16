@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCouchDBTests",
+	"category" : "SCouchDB-Core-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCouchDB2Tests",
+	"type" : "normal"
+}

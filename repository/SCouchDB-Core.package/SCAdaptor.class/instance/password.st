@@ -1,0 +1,3 @@
+authentication
+password
+	^ password

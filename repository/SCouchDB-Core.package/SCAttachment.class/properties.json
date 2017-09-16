@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "SCJsonObject",
+	"category" : "SCouchDB-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"fileName",
+		"stream"
+	],
+	"name" : "SCAttachment",
+	"type" : "normal"
+}

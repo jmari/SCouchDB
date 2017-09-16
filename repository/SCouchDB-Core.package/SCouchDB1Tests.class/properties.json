@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "Igor.Stasenko 1/12/2010 01:13",
+	"super" : "SCouchDBTests",
+	"category" : "SCouchDB-Core-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"DefaultHost"
+	],
+	"instvars" : [ ],
+	"name" : "SCouchDB1Tests",
+	"type" : "normal"
+}

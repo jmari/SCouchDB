@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCVisitor",
+	"category" : "SCouchDB-Core-MangoQueries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCouchQueryGenerator",
+	"type" : "normal"
+}

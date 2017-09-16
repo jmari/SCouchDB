@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "SCouchDB-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mimeFuns",
+		"providesUsed",
+		"responseContentType",
+		"mimeParser",
+		"server",
+		"keysByMime",
+		"mimesByKey"
+	],
+	"name" : "SCMime",
+	"type" : "normal"
+}
