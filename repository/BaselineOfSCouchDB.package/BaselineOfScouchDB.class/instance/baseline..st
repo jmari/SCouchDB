@@ -4,10 +4,9 @@ baseline: spec
 	spec for: #common do: [ 
 		self voyage: spec.
 		spec
-
-		package: 'SCouchDB-Core' with: [ spec requires: #('SCouchDB-JSON' 'Voyage-Core') ];
-
-		group: 'default' with: #('SCouchDB-Core');
-		group: 'voyage' with: #(default 'SCouchDB-Voyage');
-		group: 'viewserver' with: #(default voyage 'SCouchDB-ViewServer' )
+		package: 'SCouchDB-JSON';
+		package: 'SCouchDB-Core' with: [ spec requires: #('SCouchDB-JSON' ) ];
+		package: 'SCouchDB-Voyage' with: [ spec requires: #('SCouchDB-Core' 'Voyage' )];
+		package: 'SCouchDB-ViewServer' with: [ spec requires: #('SCouchDB-Core')].
+		self groups: spec
 	]
