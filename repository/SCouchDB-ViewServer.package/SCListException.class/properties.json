@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCFatalException",
+	"category" : "SCouchDB-ViewServer-Exceptions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCListException",
+	"type" : "normal"
+}

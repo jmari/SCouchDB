@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "JesusMari 5/20/2017 13:08",
+	"super" : "Object",
+	"category" : "SCouchDB-ViewServer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mutex",
+		"cache"
+	],
+	"name" : "SCDesignDocsCache",
+	"type" : "normal"
+}

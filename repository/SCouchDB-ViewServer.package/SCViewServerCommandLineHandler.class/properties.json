@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "CommandLineHandler",
+	"category" : "SCouchDB-ViewServer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCViewServerCommandLineHandler",
+	"type" : "normal"
+}

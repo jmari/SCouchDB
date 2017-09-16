@@ -1,0 +1,30 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "SCouchDB-ViewServer",
+	"classinstvars" : [
+		"servers",
+		"debug"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lib",
+		"exit",
+		"debug",
+		"session",
+		"port",
+		"ip",
+		"aServer",
+		"socket",
+		"funs",
+		"runner",
+		"designDocs",
+		"lastPrinted",
+		"commStream",
+		"materializer",
+		"serializer"
+	],
+	"name" : "SCViewServer",
+	"type" : "normal"
+}

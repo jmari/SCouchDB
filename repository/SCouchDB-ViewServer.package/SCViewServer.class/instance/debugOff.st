@@ -1,0 +1,3 @@
+debug
+debugOff
+	debug:=false.
