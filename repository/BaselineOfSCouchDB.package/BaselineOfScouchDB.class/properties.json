@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "BaselineOfScouchDB",
+	"name" : "BaselineOfSCouchDB",
 	"type" : "normal"
 }
