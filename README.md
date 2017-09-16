@@ -5,7 +5,7 @@ Install
 -------
 
 
-You can also install it executing scripts:
+You can install it executing scripts:
 
 ### SCouchDB-Core
 ```Smalltalk
