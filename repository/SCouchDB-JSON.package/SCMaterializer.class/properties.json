@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "SCouchDB-JSON",
+	"classinstvars" : [
+		"escapeArray"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stream",
+		"adaptor",
+		"schemes",
+		"defaultMapClass"
+	],
+	"name" : "SCMaterializer",
+	"type" : "normal"
+}

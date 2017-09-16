@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "JesusMari 8/24/2017 19:45",
+	"super" : "Object",
+	"category" : "SCouchDB-JSON",
+	"classinstvars" : [
+		"couchCache"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"compactLimit",
+		"objects",
+		"reversedObjects",
+		"versions",
+		"mutex"
+	],
+	"name" : "SCObjectsCache",
+	"type" : "normal"
+}

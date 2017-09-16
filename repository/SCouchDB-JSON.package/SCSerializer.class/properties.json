@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "JesusMari 8/28/2016 20:57",
+	"super" : "Object",
+	"category" : "SCouchDB-JSON",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"schemes",
+		"pool",
+		"uuidProvider",
+		"allColectionSerializedAsArray"
+	],
+	"name" : "SCSerializer",
+	"type" : "normal"
+}

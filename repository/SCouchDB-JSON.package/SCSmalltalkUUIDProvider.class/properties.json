@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "JesusMari 8/24/2017 19:47",
+	"super" : "SCUUIDProvider",
+	"category" : "SCouchDB-JSON",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"prefix"
+	],
+	"name" : "SCSmalltalkUUIDProvider",
+	"type" : "normal"
+}
