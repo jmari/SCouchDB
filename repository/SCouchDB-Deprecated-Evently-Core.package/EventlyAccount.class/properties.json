@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCEvently",
+	"category" : "SCouchDB-Deprecated-Evently-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "EventlyAccount",
+	"type" : "normal"
+}
