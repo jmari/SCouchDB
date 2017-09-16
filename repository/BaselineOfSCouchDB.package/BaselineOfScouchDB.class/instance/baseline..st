@@ -5,10 +5,10 @@ baseline: spec
 		self voyage: spec.
 		
 		spec
-		package: 'Voyage-Model-Core';
+
 		package: 'SCouchDB-JSON';
 		package: 'SCouchDB-Core' with: [ spec requires: #('SCouchDB-JSON' ) ];
-		package: 'SCouchDB-Voyage' with: [ spec requires: #('SCouchDB-Core' 'Voyage-Model-Core') ];
+		package: 'SCouchDB-Voyage' with: [ spec requires: #('SCouchDB-Core' 'Voyage') ];
 		package: 'SCouch-ViewServer' with: [ spec requires: #('SCouchDB-Voyage') ].
 		
 		self groups: spec
