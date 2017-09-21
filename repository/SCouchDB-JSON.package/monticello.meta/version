@@ -1,0 +1,2 @@
+(name 'SCouchDB-JSON-JesusMariAguirre.4' message 'asSCJSonObject from a creates now the correct JSON object' id 'dadd87d8-1916-0d00-9ab9-17bb0861c665' date '21 September 2017' time '9:29:20.015303 pm' author 'JesusMariAguirre' ancestors ((name 'SCouchDB-JSON-JesÃºs.3' message 'Object asSCJsonObject must be in SCouch-JSON package
+' id '175cb04f-5aeb-5cda-8472-29bca5380c32' date '21 September 2017' time '7:54:34 pm' author 'JesÃºs' ancestors () stepChildren ())) stepChildren ())

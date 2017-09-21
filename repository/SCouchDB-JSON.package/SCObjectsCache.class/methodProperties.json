@@ -1,0 +1,32 @@
+{
+	"instance" : {
+		"markAsdeleted:" : " 9/16/2017 22:22:25",
+		"initialize" : " 9/16/2017 22:22:25",
+		"compactIfNeeded" : " 9/16/2017 22:22:25",
+		"flush:" : " 9/16/2017 22:22:25",
+		"keyAtValue:ifAbsent:" : " 9/16/2017 22:22:25",
+		"performCompact" : " 9/16/2017 22:22:25",
+		"mutex" : " 9/16/2017 22:22:25",
+		"compactLimit:" : " 9/16/2017 22:22:25",
+		"revisionAt:" : " 9/16/2017 22:22:25",
+		"at:" : " 9/16/2017 22:22:25",
+		"compactLimit" : " 9/16/2017 22:22:25",
+		"keyAtValue:" : " 9/16/2017 22:22:25",
+		"recalculateCompactLimit" : " 9/16/2017 22:22:25",
+		"at:putRevision:" : " 9/16/2017 22:22:25",
+		"removeValue:" : " 9/16/2017 22:22:25",
+		"at:put:" : " 9/16/2017 22:22:25",
+		"flush" : " 9/16/2017 22:22:25",
+		"at:ifAbsent:" : " 9/16/2017 22:22:25",
+		"printOn:" : " 9/16/2017 22:22:25"
+	},
+	"class" : {
+		"new" : " 9/16/2017 22:22:25",
+		"defaultCompactLimit" : " 9/16/2017 22:22:25",
+		"instance" : " 9/16/2017 22:22:25",
+		"minimumCompactLimit" : " 9/16/2017 22:22:25",
+		"maximumCompactLimit" : " 9/16/2017 22:22:25",
+		"reset" : " 9/16/2017 22:22:25",
+		"new:" : " 9/16/2017 22:22:25"
+	}
+}
