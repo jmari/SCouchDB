@@ -11,5 +11,5 @@ testAdding2000DocumentWithoutID
 	self assert:  (db documents size) equals: 1 .
 	self assert:  time < (Time seconds:130).
 
-	"db adaptor deleteDatabase: db name."
+	db adaptor deleteDatabase: db name.
 	
