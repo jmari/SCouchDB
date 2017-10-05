@@ -11,7 +11,7 @@ newFrom: anObject
 			ifTrue:[ self fromDictionary: anObject]
 			ifFalse:[ 
 					(anObject isKindOf: Collection )
-					ifTrue: [  super newFrom: anObject ]
+					ifTrue: [  Array newFrom: anObject ]
 					ifFalse: [ 
 						jsonObj := self new.
 						anObject class allInstVarNames do:[ :aiName|
