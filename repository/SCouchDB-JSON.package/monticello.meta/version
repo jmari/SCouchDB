@@ -1,2 +1,2 @@
-(name 'SCouchDB-JSON-JesusMari.7' message 'fails in newFrom: aCollection' id 'e7380f13-2c17-0d00-8c66-c3910641ca57' date '5 October 2017' time '12:39:23.003478 pm' author 'JesusMari' ancestors ((name 'SCouchDB-JSON-JesÃºs.6' message 'corrected newFrom:When it is a basic type, number bool string...
-' id 'ddcba840-e9b3-5fcf-b5ee-84c986abdc37' date '5 October 2017' time '12:31:49 pm' author 'JesÃºs' ancestors () stepChildren ())) stepChildren ())
+(name 'SCouchDB-JSON-JesusMari.8' message 'simplified newFrom' id '1112991d-2c17-0d00-8c67-72fc0641ca57' date '5 October 2017' time '12:42:19.80972 pm' author 'JesusMari' ancestors ((name 'SCouchDB-JSON-JesÃºs.7' message 'fails in newFrom: aCollection
+' id 'f4ca10c6-b559-533f-9386-03d6607686bd' date '5 October 2017' time '12:39:24 pm' author 'JesÃºs' ancestors () stepChildren ())) stepChildren ())
