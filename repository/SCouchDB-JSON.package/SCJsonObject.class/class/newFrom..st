@@ -2,12 +2,15 @@ instance creation
 newFrom: anObject
 
 	| jsonObj |
+	"basic types"
+	(anObject isKindOf: Boolean ) ifTrue:[^ anObject].
+	(anObject isKindOf: String ) ifTrue:[^ anObject].
+	(anObject isKindOf: Number  ) ifTrue:[^ anObject].
 	
-
 	^ (anObject isKindOf: Dictionary )
 			ifTrue:[ self fromDictionary: anObject]
 			ifFalse:[ 
-				(anObject isKindOf: Collection )
+					(anObject isKindOf: Collection )
 					ifTrue: [  super newFrom: anObject ]
 					ifFalse: [ 
 						jsonObj := self new.
