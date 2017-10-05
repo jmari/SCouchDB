@@ -1,2 +1,2 @@
-(name 'SCouchDB-JSON-JesusMari.8' message 'simplified newFrom' id '1112991d-2c17-0d00-8c67-72fc0641ca57' date '5 October 2017' time '12:42:19.80972 pm' author 'JesusMari' ancestors ((name 'SCouchDB-JSON-JesÃºs.7' message 'fails in newFrom: aCollection
-' id 'f4ca10c6-b559-533f-9386-03d6607686bd' date '5 October 2017' time '12:39:24 pm' author 'JesÃºs' ancestors () stepChildren ())) stepChildren ())
+(name 'SCouchDB-JSON-JesusMari.9' message 'still have problems with asSCJsonObject' id '89306006-2e17-0d00-a471-ff36099bab78' date '5 October 2017' time '2:59:00.140563 pm' author 'JesusMari' ancestors ((name 'SCouchDB-JSON-JesÃºs.8' message 'simplified newFrom
+' id '0b95f7af-8ce1-539a-a9c9-a4de8d2ed2dd' date '5 October 2017' time '12:42:21 pm' author 'JesÃºs' ancestors () stepChildren ())) stepChildren ())

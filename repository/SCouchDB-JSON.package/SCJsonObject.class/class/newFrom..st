@@ -5,7 +5,8 @@ newFrom: anObject
 	"basic types"
 	(anObject isKindOf: Boolean ) ifTrue:[^ anObject].
 	(anObject isKindOf: Number  ) ifTrue:[^ anObject].
-	(anObject isKindOf: Collection ) ifTrue: [ ^ anObject ].
+	(anObject isKindOf: String ) ifTrue:[^ anObject].
+	(anObject isKindOf: Collection ) ifTrue: [ ^ super newFrom:anObject ].
 	
 	^ (anObject isKindOf: Dictionary )
 			ifTrue:[ self fromDictionary: anObject]
