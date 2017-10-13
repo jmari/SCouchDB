@@ -1,0 +1,25 @@
+{
+	"instance" : {
+		"escapeString:" : " 9/16/2017 22:22:25",
+		"serialize:to:" : " 9/16/2017 22:22:25",
+		"schemes" : " 9/16/2017 22:22:25",
+		"writeIdRevInstanceOf:on:" : " 9/16/2017 22:22:25",
+		"serialize:" : " 9/16/2017 22:22:25",
+		"blockForDictionaries" : " 9/16/2017 22:22:25",
+		"blockForCollections" : " 9/16/2017 22:22:25",
+		"pool" : " 9/16/2017 22:22:25",
+		"uuidProvider:" : " 9/16/2017 22:22:25",
+		"blockForObjects" : " 9/16/2017 22:22:25",
+		"blockForArrays" : " 9/16/2017 22:22:25",
+		"uuidProvider" : " 9/16/2017 22:22:25",
+		"doNotneedIdRev:" : " 9/16/2017 22:22:25",
+		"areAllColectionsSerializedAsArray" : " 9/16/2017 22:22:25",
+		"blockForAssociations" : " 9/16/2017 22:22:25",
+		"serializeAllCollectionsAsArrays" : " 9/16/2017 22:22:25",
+		"schemeFor:" : " 9/16/2017 22:22:25"
+	},
+	"class" : {
+		"serialize:to:" : " 9/16/2017 22:22:25",
+		"serialize:" : " 9/16/2017 22:22:25"
+	}
+}

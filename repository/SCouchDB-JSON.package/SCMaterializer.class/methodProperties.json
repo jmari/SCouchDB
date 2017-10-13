@@ -1,0 +1,42 @@
+{
+	"instance" : {
+		"readFrom:" : " 9/16/2017 22:22:25",
+		"injectValuesFrom:into:" : " 9/16/2017 22:22:25",
+		"readArray" : " 9/16/2017 22:22:25",
+		"skipCommentBody" : " 9/16/2017 22:22:25",
+		"blockForObjects" : " 9/16/2017 22:22:25",
+		"materializeFromStream:" : " 9/16/2017 22:22:25",
+		"interpretStringEscape" : " 9/16/2017 22:22:25",
+		"readFromString:" : " 9/16/2017 22:22:25",
+		"blockForCollections" : " 9/16/2017 22:22:25",
+		"stream" : " 9/16/2017 22:22:25",
+		"skipWhitespace" : " 9/16/2017 22:22:25",
+		"blockForDictionaries" : "JesÃºs 10/13/2017 20:51:55",
+		"defaultMapClass:" : " 9/16/2017 22:22:25",
+		"reset" : " 9/16/2017 22:22:25",
+		"unescapeUnicode" : " 9/16/2017 22:22:25",
+		"numbersMayContain:" : " 9/16/2017 22:22:25",
+		"readAny" : " 9/16/2017 22:22:25",
+		"consume:returning:" : " 9/16/2017 22:22:25",
+		"defaultMapClass" : " 9/16/2017 22:22:25",
+		"skipToEndOfLine" : " 9/16/2017 22:22:25",
+		"cacheNewObject:json:" : " 9/16/2017 22:22:25",
+		"schemes" : " 9/16/2017 22:22:25",
+		"blockForJSON" : " 9/16/2017 22:22:25",
+		"skipComment" : " 9/16/2017 22:22:25",
+		"readString" : " 9/16/2017 22:22:25",
+		"readDictionary" : " 9/16/2017 22:22:25",
+		"imaterialize:" : " 9/16/2017 22:22:25",
+		"readNumber" : " 9/16/2017 22:22:25",
+		"schemeFor:" : " 9/16/2017 22:22:25",
+		"materializeFromJsonDictionary:" : " 9/16/2017 22:22:25",
+		"materialize:" : " 9/16/2017 22:22:25",
+		"stream:" : " 9/16/2017 22:22:25"
+	},
+	"class" : {
+		"readFrom:" : " 9/16/2017 22:22:25",
+		"materializeFrom:" : " 9/16/2017 22:22:25",
+		"readFromString:" : " 9/16/2017 22:22:25",
+		"materializeFromString:" : " 9/16/2017 22:22:25"
+	}
+}
