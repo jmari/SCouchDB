@@ -2,16 +2,18 @@ instance creation
 newFrom: anObject
 
 	| jsonObj |
-	"basic types"
-	(anObject isKindOf: Boolean ) ifTrue:[^ anObject].
-	(anObject isKindOf: Number  ) ifTrue:[^ anObject].
-	(anObject isKindOf: String ) ifTrue:[^ anObject].
-	(anObject isKindOf: Collection ) ifTrue: [ ^ super newFrom:anObject ].
 	
+
 	^ (anObject isKindOf: Dictionary )
 			ifTrue:[ self fromDictionary: anObject]
-			ifFalse:[  
+			ifFalse:[ 
+				(anObject isKindOf: String )
+				ifTrue:[ anObject]
+				ifFalse:[
+				(anObject isKindOf: Collection )
+					ifTrue: [  self fromCollection: anObject ]
+					ifFalse: [ 
 						jsonObj := self new.
 						anObject class allInstVarNames do:[ :aiName|
-							jsonObj at:aiName put: (anObject instVarNamed:aiName )].
-					jsonObj]
+							jsonObj at:aiName put: (anObject instVarNamed:aiName ) asSCJsonObject].
+					jsonObj]]]
