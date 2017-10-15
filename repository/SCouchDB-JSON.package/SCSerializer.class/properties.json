@@ -9,7 +9,9 @@
 		"schemes",
 		"pool",
 		"uuidProvider",
-		"allColectionSerializedAsArray"
+		"allColectionSerializedAsArray",
+		"idPropertySymbol",
+		"idField"
 	],
 	"name" : "SCSerializer",
 	"type" : "normal"

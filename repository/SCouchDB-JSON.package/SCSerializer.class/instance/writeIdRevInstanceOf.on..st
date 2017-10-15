@@ -18,7 +18,7 @@ writeIdRevInstanceOf:obj on: stream
 						ifNil:[self uuidProvider getIdRevisionAssociationFor:obj]. 
 			idRev key ifNotNil:[
 				needComma ifTrue:[stream nextPut:$,].
-				stream nextPutAll:'"_id":"';nextPutAll: idRev key asString;nextPut:$"].
+				stream nextPut:$";nextPutAll:self idField;nextPutAll: '":"';nextPutAll: idRev key asString;nextPut:$"].
 			idRev value ifNotNil:[stream nextPut:$,;nextPutAll:'"_rev":"';nextPutAll:idRev value asString;nextPut:$"].
 			stream  
 					nextPut:$,;

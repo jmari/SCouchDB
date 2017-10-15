@@ -5,7 +5,7 @@ imaterialize: json
 
 	objectCached := json copy.
 	(json isKindOf:Dictionary) ifTrue:[
-		objectCached := SCObjectsCache instance at:(json at:'_id' ifAbsent:[nil]) ifAbsent:[nil].		
+		objectCached := SCObjectsCache instance at:(json at:'_id' ifAbsent:[json at:'id' ifAbsent:[nil]]) ifAbsent:[nil].		
 		objectCached ifNil:[
 			className := json at: '#instanceOf' ifAbsent:[self defaultMapClass asString].
 			"we're intentionally avoid using any globals here, such as Smalltalk"
