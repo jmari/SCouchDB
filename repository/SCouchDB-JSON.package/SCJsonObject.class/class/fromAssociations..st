@@ -6,8 +6,8 @@ fromAssociations: collectionOfAssociations
 	
 	collectionOfAssociations do: [:each |
 		result at: each key  put: (
-				self pool at: each key 
-					ifPresent:[self pool at: each key]
+				self pool at: each value 
+					ifPresent:[self pool at: each value]
 					ifAbsentPut:[ each value asSCJsonObject ])
 		].
 	^ result
