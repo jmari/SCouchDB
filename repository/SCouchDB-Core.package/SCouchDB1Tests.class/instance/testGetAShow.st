@@ -6,11 +6,11 @@ testGetAShow
 	app := SCSimpleApp new.	
 	db documentAt:app id put:app.
 	app initDocs.
-	docs := db all.
+	docs := db documents.
 
 	result := app show 
 					name:'user';
-					data:(docs first at:'_id');
+					data:(docs second at:'_id');
 					execute.
 					
-	self assert:result equals:'jmaJesús'
+	self assert:result equals:'lglLucía'
