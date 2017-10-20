@@ -11,7 +11,8 @@
 		"stream",
 		"adaptor",
 		"schemes",
-		"defaultMapClass"
+		"defaultMapClass",
+		"idField"
 	],
 	"name" : "SCMaterializer",
 	"type" : "normal"

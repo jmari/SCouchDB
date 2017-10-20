@@ -2,11 +2,11 @@ as yet unclassified
 discoverIdFor: jsonObject
 	| possibleUUID |
 	possibleUUID := (jsonObject isKindOf: Dictionary) ifTrue:[
-								jsonObject at:'_id' ifAbsent:[
-									jsonObject at:'id' ifAbsent:[
-										(jsonObject respondsTo:#id) 
-											ifTrue:[ jsonObject id]
-											ifFalse:[nil]]]].
+								jsonObject at:self idField ifAbsent:[
+								
+										(jsonObject respondsTo:self idField asSymbol) 
+											ifTrue:[ jsonObject perform: self idField asSymbol]
+											ifFalse:[nil]]].
 	possibleUUID 
 		ifNil:[ possibleUUID := (SCObjectsCache instance  keyAtValue:jsonObject)].
 	^ possibleUUID

@@ -2,7 +2,9 @@
 	"commentStamp" : "",
 	"super" : "Dictionary",
 	"category" : "SCouchDB-JSON",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"pool"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],

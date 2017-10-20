@@ -4,6 +4,10 @@ fromDictionary: aDictionary
 	| result |
 	result := self new.
 	
-	aDictionary keys do: [:each |
-		result at: each  put:( aDictionary  at:each) asSCJsonObject ].
+	aDictionary keysAndValuesDo: [:k :v|
+		result at: k  put: (
+				self pool at:k 
+					ifPresent:[self pool at:k]
+					ifAbsentPut:[ v asSCJsonObject ])
+		].
 	^ result
