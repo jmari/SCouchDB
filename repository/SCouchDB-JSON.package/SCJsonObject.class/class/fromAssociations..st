@@ -5,9 +5,9 @@ fromAssociations: collectionOfAssociations
 	result := self new.
 	
 	collectionOfAssociations do: [:each |
-		result at: each k  put: (
-				self pool at: each k 
-					ifPresent:[self pool at: each k]
-					ifAbsentPut:[ each v asSCJsonObject ])
+		result at: each key  put: (
+				self pool at: each key 
+					ifPresent:[self pool at: each key]
+					ifAbsentPut:[ each value asSCJsonObject ])
 		].
 	^ result
