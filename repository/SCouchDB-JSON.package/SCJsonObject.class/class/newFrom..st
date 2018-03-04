@@ -2,6 +2,7 @@ instance creation
 newFrom: anObject
 
 	| jsonObj |
+	self pool removeAll.
 	(anObject isKindOf: String ) ifTrue:[ ^ anObject]	.
 	(anObject isKindOf: Boolean ) ifTrue:[ ^ anObject].		
 	(anObject isKindOf: Number ) ifTrue:[ ^ anObject].
