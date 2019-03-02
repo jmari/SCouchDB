@@ -1,3 +1,3 @@
-as yet unclassified
+instance creation
 new
-	self error:'Singleton class, access using couchCache class method'
+	self error:'Singleton class, access using #instance class method'
