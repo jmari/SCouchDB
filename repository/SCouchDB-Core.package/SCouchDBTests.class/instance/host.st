@@ -1,3 +1,3 @@
 utils
 host
-	^ host ifNil: [ host := DefaultHost ifNil: ['localhost']]
+	^ host ifNil: [ host := 'localhost']

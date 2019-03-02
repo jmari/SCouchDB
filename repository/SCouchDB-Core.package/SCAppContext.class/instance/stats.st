@@ -16,25 +16,26 @@ stats
 			((e at:'min') < min) ifTrue:[min:=(e at:'min')].
 			((e at:'max') > max) ifTrue:[max:=(e at:'max')].
 			sum:= sum + (e at:'sum').
-			sqSum:= sqSum+ (e at:'sumSqr').
-			count:= count + e at:'count'.
+			sqSum:= sqSum + (e at:'sqSum').
+			count:= count + (e at:'count').
 		].
 		avg := (count > 0)
-					ifFalse:[0.0 ] 
+					ifFalse:[sum] 
 					ifTrue:[sum / count].
-		variance:= (count > 0)
-					ifFalse:[0.0 ] 
-					ifTrue:[ (((sqSum / count) - ((sum /count ) squared)) )].
-		stdDev :=variance sqrt.
+		(count > 1)
+					ifFalse:[variance:=stdDev := 0.0 ] 
+					ifTrue:[ 
+						variance:= ((sqSum  - (count * (avg  squared))) / (count - 1.0)) asFloat.
+						stdDev := variance>0 ifTrue:[variance sqrt] ifFalse:[0]].
 		result :={
 							'min'-> min.
 							'max'-> max.
 							'avg'-> avg.
 							'sum'-> sum.
 							'count'-> count.
-							'variance'->variance.
+							's2'->variance.
 							'stdDev'->stdDev.
-							'sumSqr'->sqSum
+							'sqSum'->sqSum
 							} asDictionary .
 	]
 	ifFalse:[
@@ -49,24 +50,26 @@ stats
 			(value < min) ifTrue:[min:=value].
 			(value > max) ifTrue:[max:=value].
 			sum:= sum + value.
-			sqSum:= sqSum+ (value* value)]
+			sqSum:= sqSum + (value squared)]
 		].
 		avg := (count > 0)
-					ifFalse:[0.0 ] 
+					ifFalse:[sum] 
 					ifTrue:[sum / count].
-		variance:= (count > 0)
-					ifFalse:[0.0 ] 
-					ifTrue:[ (((sqSum / count) - ((sum/count ) squared)) )].
-		stdDev :=variance sqrt.
+		(count > 1)
+					ifFalse:[variance:=stdDev := 0.0 ] 
+					ifTrue:[ 
+						variance:= ((sqSum  - (count * ( avg  squared))) / (count - 1.0)) asFloat.
+						stdDev := variance>0 ifTrue:[variance sqrt] ifFalse:[0]].
+		
 		result :={
 							'min'-> min.
 							'max'-> max.
 							'avg'-> avg.
 							'sum'-> sum.
 							'count'-> count.
-							'variance'->variance.
+							's2'->variance.
 							'stdDev'->stdDev.
-							'sumSqr'->sqSum
+							'sqSum'->sqSum
 							} asDictionary .
 		].
 	]
