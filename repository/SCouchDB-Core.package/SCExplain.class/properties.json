@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCMangoQuery",
+	"category" : "SCouchDB-Core-MangoQueries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCExplain",
+	"type" : "normal"
+}

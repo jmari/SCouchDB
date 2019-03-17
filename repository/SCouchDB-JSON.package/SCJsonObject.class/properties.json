@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Dictionary",
+	"category" : "SCouchDB-JSON",
+	"classinstvars" : [
+		"pool"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCJsonObject",
+	"type" : "normal"
+}

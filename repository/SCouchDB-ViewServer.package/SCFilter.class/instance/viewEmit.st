@@ -1,0 +1,3 @@
+accessing
+viewEmit
+	^ viewEmit

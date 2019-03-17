@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "JesusMari 5/20/2017 13:06",
+	"super" : "Object",
+	"category" : "SCouchDB-ViewServer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"server",
+		"viewEmit",
+		"serializer"
+	],
+	"name" : "SCFilter",
+	"type" : "normal"
+}

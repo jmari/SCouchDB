@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "SCOperator",
+	"category" : "SCouchDB-Core-MangoQueries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"javascript"
+	],
+	"name" : "SCWhereCondition",
+	"type" : "normal"
+}

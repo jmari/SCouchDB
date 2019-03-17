@@ -1,0 +1,3 @@
+factory
+newGenerator
+	^ SCouchQueryGenerator new

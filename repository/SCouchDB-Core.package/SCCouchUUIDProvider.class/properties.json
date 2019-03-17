@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "SCUUIDProvider",
+	"category" : "SCouchDB-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"adaptor"
+	],
+	"name" : "SCCouchUUIDProvider",
+	"type" : "normal"
+}

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCConditionOperator",
+	"category" : "SCouchDB-Core-MangoQueries",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCAllOperator",
+	"type" : "normal"
+}

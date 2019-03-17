@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCList",
+	"category" : "SCouchDB-Core-Application",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCShow",
+	"type" : "normal"
+}

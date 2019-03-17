@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "SCDocument",
+	"category" : "SCouchDB-Core-Application",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"buf",
+		"mime",
+		"filter",
+		"server",
+		"buildInReduceFunctions",
+		"renderer",
+		"validator"
+	],
+	"name" : "SCAppContext",
+	"type" : "normal"
+}

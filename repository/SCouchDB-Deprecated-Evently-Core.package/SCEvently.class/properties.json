@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "SCJsonObject",
+	"category" : "SCouchDB-Deprecated-Evently-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"events",
+		"triggers"
+	],
+	"name" : "SCEvently",
+	"type" : "normal"
+}

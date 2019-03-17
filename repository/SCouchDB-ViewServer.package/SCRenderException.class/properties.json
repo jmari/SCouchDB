@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "SCViewServerException",
+	"category" : "SCouchDB-ViewServer-Exceptions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"arrorCode",
+		"arrorDescription"
+	],
+	"name" : "SCRenderException",
+	"type" : "normal"
+}

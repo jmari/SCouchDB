@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SCApp",
+	"category" : "SCouchDB-Application-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SCSimpleApp",
+	"type" : "normal"
+}

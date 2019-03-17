@@ -1,0 +1,21 @@
+{
+	"commentStamp" : "JesusMari 5/20/2017 13:10",
+	"super" : "Object",
+	"category" : "SCouchDB-ViewServer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"chunks",
+		"startResp",
+		"mime",
+		"lastRow",
+		"gotRow",
+		"html",
+		"xml",
+		"server",
+		"serializer"
+	],
+	"name" : "SCRenderer",
+	"type" : "normal"
+}
