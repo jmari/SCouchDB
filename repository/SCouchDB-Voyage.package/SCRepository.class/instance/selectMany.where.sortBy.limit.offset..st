@@ -2,7 +2,7 @@ persistence
 selectMany: aClass where: aWhereBlock sortBy: sortBlockOrArray limit: limit offset: offset
 	| index mq|
 	
-
+	"TO-DO: voyage object must be recursivelly completed "
 	mq := self database mangoQuery 
 						selector:[:aDoc| (aDoc at:'#instanceOf') = aClass name];
 						limit: limit;
