@@ -1,5 +1,5 @@
 # SCouchDB
-Pharo driver for CouchDB database using Zinc client. Supports Mango queries and implements Voyage API
+Pharo driver for CouchDB database using Zinc client. Supports Mango queries and implements a very simple implementation of Voyage API (Objects are always serialized in one document per object).
 
 Install
 -------
