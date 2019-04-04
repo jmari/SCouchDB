@@ -1,3 +1,0 @@
-debug
-debugOff
-	debug:=false.

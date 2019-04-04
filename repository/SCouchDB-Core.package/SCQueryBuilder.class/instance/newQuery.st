@@ -1,3 +1,0 @@
-factory
-newQuery
-	^ SCQuery new

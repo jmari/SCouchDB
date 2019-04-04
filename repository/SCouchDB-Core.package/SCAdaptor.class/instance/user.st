@@ -1,3 +1,0 @@
-authentication
-user
-	^ user

@@ -1,3 +1,0 @@
-accessing
-platformIdentifier
-	self shouldBeImplemented

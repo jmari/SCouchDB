@@ -1,3 +1,0 @@
-nodes
-removeSignature:aSignature
-	self signatures removeKey:aSignature

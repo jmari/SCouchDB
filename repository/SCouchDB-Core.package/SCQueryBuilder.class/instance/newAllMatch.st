@@ -1,3 +1,0 @@
-factory
-newAllMatch
-	^ SCAllMatch new

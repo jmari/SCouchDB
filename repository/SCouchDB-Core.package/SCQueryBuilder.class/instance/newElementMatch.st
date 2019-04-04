@@ -1,3 +1,0 @@
-factory
-newElementMatch
-	^ SCElementMatch new
