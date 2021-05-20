@@ -4,5 +4,5 @@ Class Json signals instances of me when an input stream contains invalid JSON in
 Class {
 	#name : #SCJsonSyntaxError,
 	#superclass : #Error,
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }

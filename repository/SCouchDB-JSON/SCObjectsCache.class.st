@@ -26,7 +26,7 @@ Class {
 	#classInstVars : [
 		'couchCache'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #defaults }

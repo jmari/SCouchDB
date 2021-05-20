@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'pool'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #'instance creation' }

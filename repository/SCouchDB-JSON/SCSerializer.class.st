@@ -32,7 +32,7 @@ Class {
 		'idPropertySymbol',
 		'idField'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #'static-methods' }

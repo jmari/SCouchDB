@@ -24,7 +24,7 @@ Class {
 	#instVars : [
 		'prefix'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #'as yet unclassified' }
