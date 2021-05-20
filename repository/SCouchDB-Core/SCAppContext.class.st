@@ -121,6 +121,11 @@ SCAppContext >> isAdmin [
 	^ self validator isAdmin
 ]
 
+{ #category : #testing }
+SCAppContext >> isSCAppContext [ 
+	^ true
+]
+
 { #category : #'render-wrapper' }
 SCAppContext >> lastRow [
 	^ self renderer lastRow

@@ -6,3 +6,15 @@ Object >> asSCJsonObject [
 	^ self as: SCJsonObject
 	 
 ]
+
+{ #category : #'*SCouchDB-JSON' }
+Object >> isSCAppContext [
+	^ false
+	 
+]
+
+{ #category : #'*SCouchDB-JSON' }
+Object >> isSCJsonObject [
+	^ false
+	 
+]

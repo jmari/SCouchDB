@@ -201,7 +201,7 @@ SCSerializer >> blockForRootObjects [
 
 { #category : #private }
 SCSerializer >> doNotneedIdRev: anObject [
-	^ ((anObject isKindOf: SCJsonObject) & 	((anObject isKindOf: SCAppContext ) not))
+	^ ((anObject isSCJsonObject) & ((anObject isSCAppContext ) not))
 ]
 
 { #category : #private }

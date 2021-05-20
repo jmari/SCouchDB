@@ -104,6 +104,11 @@ SCJsonObject >> doesNotUnderstand: aMessage [
 	
 ]
 
+{ #category : #testing }
+SCJsonObject >> isSCJsonObject [ 
+	^ true
+]
+
 { #category : #accessing }
 SCJsonObject >> name [
 "override 'cause Object defines this"

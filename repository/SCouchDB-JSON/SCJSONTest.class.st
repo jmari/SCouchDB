@@ -1,7 +1,7 @@
 Class {
 	#name : #SCJSONTest,
 	#superclass : #TestCase,
-	#category : #'SCouchDB-JSON-Tests'
+	#category : 'SCouchDB-JSON-Tests'
 }
 
 { #category : #'as yet unclassified' }
