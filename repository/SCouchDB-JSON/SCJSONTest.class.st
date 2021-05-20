@@ -1,7 +1,7 @@
 Class {
 	#name : #SCJSONTest,
 	#superclass : #TestCase,
-	#category : 'SCouchDB-JSON-Tests'
+	#category : #'SCouchDB-JSON-Tests'
 }
 
 { #category : #'as yet unclassified' }
@@ -102,8 +102,8 @@ SCJSONTest >> testRootSerialization [
 		ser :=	 self serializer serialize: k.
 		ser inspect.
 		mat := self materializer materialize:ser.
-		self assert: mat size equals:3.
-		self assert: (mat at:3)  equals: k.
+		self assert: mat  equals:self objectsToTestRootSerialization .
+	
 
 ]
 
