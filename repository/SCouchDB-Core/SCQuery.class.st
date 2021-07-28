@@ -9,6 +9,7 @@ Class {
 
 { #category : #accessing }
 SCQuery >> at: aString [
+
 	^ self fieldNamed: aString asString
 ]
 
