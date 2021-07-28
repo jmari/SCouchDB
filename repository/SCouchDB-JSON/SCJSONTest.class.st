@@ -1,12 +1,13 @@
 Class {
 	#name : #SCJSONTest,
 	#superclass : #TestCase,
-	#category : 'SCouchDB-JSON-Tests'
+	#category : #'SCouchDB-JSON-Tests'
 }
 
 { #category : #'as yet unclassified' }
 SCJSONTest >> largeObject [
    | lo |
+
 	lo := Array new:5000.
 	1 to:5000 do:[:i | lo at:i put: self objectsForTestingSerialization ].
 	^ lo
