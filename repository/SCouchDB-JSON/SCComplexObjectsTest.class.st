@@ -1,11 +1,11 @@
 Class {
-	#name : #SCJSONTest,
+	#name : #SCComplexObjectsTest,
 	#superclass : #TestCase,
 	#category : #'SCouchDB-JSON-Tests'
 }
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> largeObject [
+SCComplexObjectsTest >> largeObject [
    | lo |
 	lo := Array new:5000.
 	1 to:5000 do:[:i | lo at:i put: self objectsForTestingSerialization ].
@@ -13,12 +13,12 @@ SCJSONTest >> largeObject [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> materializer [
+SCComplexObjectsTest >> materializer [
 	^ SCMaterializer new
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> objectsForTestingMaterialization [
+SCComplexObjectsTest >> objectsForTestingMaterialization [
 ^ { 
 	(OrderedCollection  new add:Stack new; add:Stack new;yourself) -> '{"#instanceOf":"OrderedCollection","#values":[{"#instanceOf":"Stack","#values":[]},{"#instanceOf":"Stack","#values":[]}]}'.
 	(Array
@@ -44,7 +44,7 @@ SCJSONTest >> objectsForTestingMaterialization [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> objectsForTestingSerialization [
+SCComplexObjectsTest >> objectsForTestingSerialization [
 ^ { 
 	(OrderedCollection  new add:Stack new; add:Stack new;yourself) -> '[[],[]]'.
 	(Array
@@ -69,24 +69,24 @@ SCJSONTest >> objectsForTestingSerialization [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> objectsToTestRootSerialization [
+SCComplexObjectsTest >> objectsToTestRootSerialization [
 	^  42@1 corner:10@11
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> serializeTest [
+SCComplexObjectsTest >> serializeTest [
 
 	self objectsForTestingSerialization keysAndValuesDo:[:k :v|
 		self assert: (self serializer serialize:k) equals:v] 
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> serializer [
+SCComplexObjectsTest >> serializer [
 	^ SCSerializer new
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> testMaterializeObjects [
+SCComplexObjectsTest >> testMaterializeObjects [
 	| mat |
 
 	self objectsForTestingMaterialization keysAndValuesDo:[:k :v|	
@@ -95,12 +95,12 @@ SCJSONTest >> testMaterializeObjects [
 ]
 
 { #category : #tests }
-SCJSONTest >> testRootSerialization [
+SCComplexObjectsTest >> testRootSerialization [
 	| ser mat k |
 
 		k := self objectsToTestRootSerialization .
 		ser :=	 self serializer serialize: k.
-		ser inspect.
+	
 		mat := self materializer materialize:ser.
 		self assert: mat  equals:self objectsToTestRootSerialization .
 	
@@ -108,7 +108,7 @@ SCJSONTest >> testRootSerialization [
 ]
 
 { #category : #tests }
-SCJSONTest >> testSerializeLargeObjects [
+SCComplexObjectsTest >> testSerializeLargeObjects [
 	| ser time mat|
 
 
@@ -121,7 +121,7 @@ SCJSONTest >> testSerializeLargeObjects [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> testSerializeObjectCircularReferences [
+SCComplexObjectsTest >> testSerializeObjectCircularReferences [
 	| obj sobj mobj|
 
 	'{
@@ -140,6 +140,7 @@ SCJSONTest >> testSerializeObjectCircularReferences [
 
 	obj := SCDomainClassForTest new.
 	sobj := self serializer serialize: obj.
+	SCObjectsCache instance flush.
 	mobj := self materializer materialize: sobj.
 	self assert:  mobj b a equals:mobj a .
 	mobj a:22.
@@ -148,7 +149,7 @@ SCJSONTest >> testSerializeObjectCircularReferences [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> testSerializeObjects [
+SCComplexObjectsTest >> testSerializeObjects [
 	| ser mat |
 
 	self objectsForTestingSerialization keysAndValuesDo:[:k :v|	
@@ -160,7 +161,7 @@ SCJSONTest >> testSerializeObjects [
 ]
 
 { #category : #'as yet unclassified' }
-SCJSONTest >> testSerializeObjectsPlain [
+SCComplexObjectsTest >> testSerializeObjectsPlain [
 	| ser |
 
 	self objectsForTestingSerialization keysAndValuesDo:[:k :v|	

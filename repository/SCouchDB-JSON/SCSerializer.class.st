@@ -240,6 +240,12 @@ SCSerializer >> idField: aField [
 	idField  := aField 
 ]
 
+{ #category : #accessing }
+SCSerializer >> plainJson [
+	allColectionSerializedAsArray := true.
+	self schemes at:Collection put:self blockForArrays 
+]
+
 { #category : #private }
 SCSerializer >> pool [
 	^ pool ifNil:[ pool := WeakIdentityKeyDictionary  new ]
@@ -293,8 +299,16 @@ SCSerializer >> serialize: anObject to: aStream [
 
 { #category : #accessing }
 SCSerializer >> serializeAllCollectionsAsArrays [
-	allColectionSerializedAsArray := true.
-	self schemes at:Collection put:self blockForArrays 
+	self plainJson
+]
+
+{ #category : #accessing }
+SCSerializer >> serializeDateAsString [
+
+	self schemes at:Date put:[ :dateObject :stream|
+		(self schemeFor: String) value: dateObject yyyymmdd value:stream ].
+	self schemes at:DateAndTime put:[ :dateObject :stream |
+		(self schemeFor: String) value: dateObject asString value:stream ]
 ]
 
 { #category : #private }
