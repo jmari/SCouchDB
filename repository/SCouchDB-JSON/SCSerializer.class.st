@@ -221,7 +221,7 @@ SCSerializer >> escapeString: aString [
 		c == Character newPage ifTrue:[newStream nextPut:$\;nextPut:$f]ifFalse:[
 		c == Character cr ifTrue:[newStream nextPut:$\;nextPut:$r]ifFalse:[
 		c == Character tab ifTrue:[newStream nextPut:$\;nextPut:$t]ifFalse:[
-		c codePoint > 255 ifTrue:[
+		c codePoint > 127 ifTrue:[
 			code :=(c asUnicode printStringBase:16). 
 			[code size<4] whileTrue:[code:= '0', code].
 			newStream nextPutAll: '\u';nextPutAll:code ]ifFalse:[newStream nextPut:c]]]]]]]]].

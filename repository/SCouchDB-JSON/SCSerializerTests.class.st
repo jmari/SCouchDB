@@ -69,7 +69,7 @@ SCSerializerTests >> testExtendedAsciiOnlyStrings [
 		String streamContents: [ :stream |
 			(SCSerializer serialize:object to: stream) ] ].
 	
-	self assert: (writer value: 'élève français') equals: '"élève français"'.
+	self assert: (writer value: 'élève français') equals: '"\u00E9l\u00E8ve fran\u00E7ais"'.
 	self assert: (writer value: 'foo') equals: '"foo"'.
 	self assert: (writer value: 'Foo BAR') equals: '"Foo BAR"'.
 	self assert: (writer value: '') equals: '""'.
