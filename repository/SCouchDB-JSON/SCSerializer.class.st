@@ -30,7 +30,8 @@ Class {
 		'uuidProvider',
 		'allColectionSerializedAsArray',
 		'idPropertySymbol',
-		'idField'
+		'idField',
+		'encodeSingleQuote'
 	],
 	#category : #'SCouchDB-JSON-Core'
 }
@@ -204,6 +205,11 @@ SCSerializer >> doNotneedIdRev: anObject [
 	^ ((anObject isSCJsonObject) & ((anObject isSCAppContext ) not))
 ]
 
+{ #category : #accessing }
+SCSerializer >> encodeSingleQuote [
+	encodeSingleQuote := true
+]
+
 { #category : #private }
 SCSerializer >> escapeString: aString [
 	
@@ -221,7 +227,9 @@ SCSerializer >> escapeString: aString [
 		c == Character newPage ifTrue:[newStream nextPut:$\;nextPut:$f]ifFalse:[
 		c == Character cr ifTrue:[newStream nextPut:$\;nextPut:$r]ifFalse:[
 		c == Character tab ifTrue:[newStream nextPut:$\;nextPut:$t]ifFalse:[
-		c codePoint > 127 ifTrue:[
+		(c codePoint > 127 
+		or:[c == $' & self isSingleQuoteEncoded])
+		ifTrue:[
 			code :=(c asUnicode printStringBase:16). 
 			[code size<4] whileTrue:[code:= '0', code].
 			newStream nextPutAll: '\u';nextPutAll:code ]ifFalse:[newStream nextPut:c]]]]]]]]].
@@ -238,6 +246,11 @@ SCSerializer >> idField [
 { #category : #accessing }
 SCSerializer >> idField: aField [
 	idField  := aField 
+]
+
+{ #category : #accessing }
+SCSerializer >> isSingleQuoteEncoded [
+	^ encodeSingleQuote ifNil:[ encodeSingleQuote := false ]
 ]
 
 { #category : #accessing }
