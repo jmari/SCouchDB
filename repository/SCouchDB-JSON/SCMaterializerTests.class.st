@@ -145,6 +145,16 @@ SCMaterializerTests >> testNonBMPCharacterDecoding [
 ]
 
 { #category : #testing }
+SCMaterializerTests >> testNonBMPCharacterDecodingInField [
+	"Characters not in the Basic Multilingual Plane are encoded as a 4 HEX digits unicode"
+
+	| string object |
+	string := 16r1D11 asCharacter asString. "MUSICAL SYMBOL G CLEF"
+	object := (SCMaterializer materializeFromString: '{"pop\u00F3":"\u1D11"}').
+	self assert: (object at:'popó') equals: string
+]
+
+{ #category : #testing }
 SCMaterializerTests >> testNull [
 	self assert: (SCMaterializer materializeFrom:  'null' readStream)  equals: nil.
 	self assert: (SCMaterializer materializeFrom:  '	null ' readStream)  equals: nil.
