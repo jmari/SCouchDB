@@ -78,7 +78,7 @@ SCSerializer >> blockForArrays [
 { #category : #private }
 SCSerializer >> blockForAssociations [
 	^ [ :obj :stream| 
-				stream nextPut:$";nextPutAll: obj key asString;nextPut:$";nextPut:$:. 
+				stream nextPut:$";nextPutAll: (self escapeString:obj key asString);nextPut:$";nextPut:$:. 
 				self serialize: obj value to:stream].
 ]
 
@@ -147,7 +147,7 @@ SCSerializer >> blockForObjects [
 		instanceVariables do:[:varName|
 			stream 
 				nextPut:$";
-				nextPutAll: varName asString;
+				nextPutAll: (self escapeString:varName asString);
 				nextPut:$";
 				nextPut:$:.
 				self serialize: ( obj instVarNamed:varName ) to: stream.
