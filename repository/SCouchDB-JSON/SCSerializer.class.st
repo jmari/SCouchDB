@@ -279,7 +279,9 @@ SCSerializer >> schemes [
 			UndefinedObject -> [ :obj :stream| stream nextPutAll: 'null'  ].
 			True -> [ :obj :stream| stream nextPutAll: 'true'  ].
 			False -> [ :obj :stream| stream nextPutAll: 'false'  ].
-			Number -> [ :obj :stream| stream nextPutAll: obj asString  ].
+			Number -> [ :obj :stream| stream nextPutAll: (obj isInteger 
+																					ifTrue:[obj asString] 
+																					ifFalse:[obj asFloat asString ])].
 			String -> [ :obj :stream| stream nextPut:$";nextPutAll: (self escapeString:obj);nextPut:$"].
 			Array -> self blockForArrays.
 			Collection -> self blockForCollections.
