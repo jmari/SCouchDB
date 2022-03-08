@@ -30,9 +30,10 @@ Class {
 		'uuidProvider',
 		'allColectionSerializedAsArray',
 		'idPropertySymbol',
-		'idField'
+		'idField',
+		'encodeSingleQuote'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #'static-methods' }
@@ -77,7 +78,7 @@ SCSerializer >> blockForArrays [
 { #category : #private }
 SCSerializer >> blockForAssociations [
 	^ [ :obj :stream| 
-				stream nextPut:$";nextPutAll: obj key asString;nextPut:$";nextPut:$:. 
+				stream nextPut:$";nextPutAll: (self escapeString:obj key asString);nextPut:$";nextPut:$:. 
 				self serialize: obj value to:stream].
 ]
 
@@ -146,7 +147,7 @@ SCSerializer >> blockForObjects [
 		instanceVariables do:[:varName|
 			stream 
 				nextPut:$";
-				nextPutAll: varName asString;
+				nextPutAll: (self escapeString:varName asString);
 				nextPut:$";
 				nextPut:$:.
 				self serialize: ( obj instVarNamed:varName ) to: stream.
@@ -204,6 +205,11 @@ SCSerializer >> doNotneedIdRev: anObject [
 	^ ((anObject isSCJsonObject) & ((anObject isSCAppContext ) not))
 ]
 
+{ #category : #accessing }
+SCSerializer >> encodeSingleQuote [
+	encodeSingleQuote := true
+]
+
 { #category : #private }
 SCSerializer >> escapeString: aString [
 	
@@ -221,7 +227,9 @@ SCSerializer >> escapeString: aString [
 		c == Character newPage ifTrue:[newStream nextPut:$\;nextPut:$f]ifFalse:[
 		c == Character cr ifTrue:[newStream nextPut:$\;nextPut:$r]ifFalse:[
 		c == Character tab ifTrue:[newStream nextPut:$\;nextPut:$t]ifFalse:[
-		c codePoint > 255 ifTrue:[
+		(c codePoint > 127 
+		or:[c == $' & self isSingleQuoteEncoded])
+		ifTrue:[
 			code :=(c asUnicode printStringBase:16). 
 			[code size<4] whileTrue:[code:= '0', code].
 			newStream nextPutAll: '\u';nextPutAll:code ]ifFalse:[newStream nextPut:c]]]]]]]]].
@@ -238,6 +246,17 @@ SCSerializer >> idField [
 { #category : #accessing }
 SCSerializer >> idField: aField [
 	idField  := aField 
+]
+
+{ #category : #accessing }
+SCSerializer >> isSingleQuoteEncoded [
+	^ encodeSingleQuote ifNil:[ encodeSingleQuote := false ]
+]
+
+{ #category : #accessing }
+SCSerializer >> plainJson [
+	allColectionSerializedAsArray := true.
+	self schemes at:Collection put:self blockForArrays 
 ]
 
 { #category : #private }
@@ -260,7 +279,9 @@ SCSerializer >> schemes [
 			UndefinedObject -> [ :obj :stream| stream nextPutAll: 'null'  ].
 			True -> [ :obj :stream| stream nextPutAll: 'true'  ].
 			False -> [ :obj :stream| stream nextPutAll: 'false'  ].
-			Number -> [ :obj :stream| stream nextPutAll: obj asString  ].
+			Number -> [ :obj :stream| stream nextPutAll: (obj isInteger 
+																					ifTrue:[obj asString] 
+																					ifFalse:[obj asFloat asString ])].
 			String -> [ :obj :stream| stream nextPut:$";nextPutAll: (self escapeString:obj);nextPut:$"].
 			Array -> self blockForArrays.
 			Collection -> self blockForCollections.
@@ -293,8 +314,16 @@ SCSerializer >> serialize: anObject to: aStream [
 
 { #category : #accessing }
 SCSerializer >> serializeAllCollectionsAsArrays [
-	allColectionSerializedAsArray := true.
-	self schemes at:Collection put:self blockForArrays 
+	self plainJson
+]
+
+{ #category : #accessing }
+SCSerializer >> serializeDateAsString [
+
+	self schemes at:Date put:[ :dateObject :stream|
+		(self schemeFor: String) value: dateObject yyyymmdd value:stream ].
+	self schemes at:DateAndTime put:[ :dateObject :stream |
+		(self schemeFor: String) value: dateObject asString value:stream ]
 ]
 
 { #category : #private }

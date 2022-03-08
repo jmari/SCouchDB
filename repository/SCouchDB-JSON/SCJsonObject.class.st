@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'pool'
 	],
-	#category : 'SCouchDB-JSON'
+	#category : #'SCouchDB-JSON-Core'
 }
 
 { #category : #'instance creation' }
@@ -113,6 +113,11 @@ SCJsonObject >> isSCJsonObject [
 SCJsonObject >> name [
 "override 'cause Object defines this"
 	^self at: 'name'
+]
+
+{ #category : #converting }
+SCJsonObject >> printString [
+	^ self asString
 ]
 
 { #category : #accessing }
