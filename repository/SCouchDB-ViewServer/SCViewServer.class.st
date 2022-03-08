@@ -162,7 +162,11 @@ SCViewServer >> compileMapFunction: aMethodSource [
 	[
 		funs ifNil:[ funs:=OrderedCollection new].
 		funs add: (self runner compiledFunctions at: aMethodSource hash ifAbsentPut:[	
-				Compiler evaluate:aMethodSource for: self runner logged:false ]).
+								self class compiler 
+								source: aMethodSource; 
+								receiver: self runner; 
+								logged: false;
+								evaluate ]).
 		^'true'] 
 		on: SyntaxErrorNotification , Error do:
 		[:err| SCSyntaxException signal:  
@@ -298,7 +302,13 @@ SCViewServer >> designDocs [
 SCViewServer >> evaluate:fun for:contextInstance logged:logged [
 
 	(fun isKindOf:BlockClosure) ifTrue:[^fun].
-	^ Compiler evaluate:fun for: contextInstance logged: logged
+	^ self class compiler 
+						source: fun; 
+						receiver: contextInstance; 
+						logged: logged;
+						evaluate 
+	
+
 	
 
 
@@ -571,7 +581,11 @@ SCViewServer >> reduce:rFunction  keys:keyArray values:valArray rereduce:aBoolea
 	[  
   		reduceFunction:= rFunction trimSpaces. 
 		rfun:=self runner compiledFunctions at: reduceFunction hash ifAbsentPut:[		
-				Compiler evaluate:reduceFunction for: self runner logged:false ].
+				self class compiler 
+								source:reduceFunction; 
+								receiver: self runner; 
+								logged:false;
+								evaluate ].
 		res:= rfun valueWithEnoughArguments:( Array with:keyArray with:valArray with:aBoolean).
 		^res
 	] on:Error do:[:err| 
