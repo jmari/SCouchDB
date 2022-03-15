@@ -57,6 +57,7 @@ SCComplexObjectsTest >> objectsForTestingSerialization [
 		nil -> 'null'.
 		1 -> '1'.
 		1.1 -> '1.1'.
+		1/2 -> '0.5'.
 		'hola'->'"hola"'.
 		#(1 2 'hola') -> '[1,2,"hola"]'.
 		#(1 2 'hola') asOrderedCollection   -> '[1,2,"hola"]'.
