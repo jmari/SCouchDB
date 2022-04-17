@@ -224,6 +224,11 @@ SCSerializer >> emptyClassForClass: aClass [
 	
 ]
 
+{ #category : #accessing }
+SCSerializer >> encodeSingleQuote [
+	encodeSingleQuote := true
+]
+
 { #category : #private }
 SCSerializer >> escapeString: aString [
 	
@@ -241,7 +246,9 @@ SCSerializer >> escapeString: aString [
 		c == Character newPage ifTrue:[newStream nextPut:$\;nextPut:$f]ifFalse:[
 		c == Character cr ifTrue:[newStream nextPut:$\;nextPut:$r]ifFalse:[
 		c == Character tab ifTrue:[newStream nextPut:$\;nextPut:$t]ifFalse:[
-		c codePoint > 255 ifTrue:[
+		(c codePoint > 127 
+		or:[c == $' & self isSingleQuoteEncoded])
+		ifTrue:[
 			code :=(c asUnicode printStringBase:16). 
 			[code size<4] whileTrue:[code:= '0', code].
 			newStream nextPutAll: '\u';nextPutAll:code ]ifFalse:[newStream nextPut:c]]]]]]]]].
@@ -261,6 +268,11 @@ SCSerializer >> idField: aField [
 ]
 
 { #category : #accessing }
+SCSerializer >> isSingleQuoteEncoded [
+	^ encodeSingleQuote ifNil:[ encodeSingleQuote := false ]
+]
+
+{ #category : #accessing }
 SCSerializer >> maxDepth [
 
 	^ maxDepth ifNil:[ maxDepth :=  -1 ]
@@ -270,6 +282,12 @@ SCSerializer >> maxDepth [
 SCSerializer >> maxDepth: anObject [
 
 	maxDepth := anObject
+]
+
+{ #category : #accessing }
+SCSerializer >> plainJson [
+	allColectionSerializedAsArray := true.
+	self schemes at:Collection put:self blockForArrays 
 ]
 
 { #category : #private }
@@ -326,8 +344,16 @@ SCSerializer >> serialize: anObject to: aStream depth: depth [
 
 { #category : #accessing }
 SCSerializer >> serializeAllCollectionsAsArrays [
-	allColectionSerializedAsArray := true.
-	self schemes at:Collection put:self blockForArrays 
+	self plainJson
+]
+
+{ #category : #accessing }
+SCSerializer >> serializeDateAsString [
+
+	self schemes at:Date put:[ :dateObject :stream|
+		(self schemeFor: String) value: dateObject yyyymmdd value:stream ].
+	self schemes at:DateAndTime put:[ :dateObject :stream |
+		(self schemeFor: String) value: dateObject asString value:stream ]
 ]
 
 { #category : #private }

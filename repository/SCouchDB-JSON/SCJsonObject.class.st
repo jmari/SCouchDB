@@ -115,6 +115,11 @@ SCJsonObject >> name [
 	^self at: 'name'
 ]
 
+{ #category : #converting }
+SCJsonObject >> printString [
+	^ self asString
+]
+
 { #category : #accessing }
 SCJsonObject >> value [
 "override 'cause Object defines this"

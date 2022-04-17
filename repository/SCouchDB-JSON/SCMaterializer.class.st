@@ -53,13 +53,12 @@ SCMaterializer >> blockForCollections [
 	
 	^ [ :obj :json |
 		| nObj nArray|
-		(obj isKindOf: Array) 
-				ifTrue:[
-					
+		(obj isKindOf: ArrayedCollection) 
+				ifTrue:[					
 					nObj := (json isKindOf:Dictionary)
 									ifTrue:[ json at:'#values' ]
 									ifFalse:[ json ].
-					nArray := Array new: nObj size.
+					nArray := obj class new: nObj size.
 					nObj doWithIndex:[:each :index|
 						nArray at:index put: (self imaterialize:each)].
 					nArray]
@@ -161,7 +160,8 @@ SCMaterializer >> imaterialize: json [
 								ifNil: [ 
 									"try to materialize in the Default class"
 									self class environment bindingOf:self defaultMapClass asString asSymbol ].
-			objectCached :=binding value new]].
+			objectCached :=binding value new.
+			self cacheNewObject: objectCached json:json.]].
 
 	^ self injectValuesFrom: json into: objectCached. 
 	

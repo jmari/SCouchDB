@@ -1,7 +1,7 @@
 Extension { #name : #SCAppContext }
 
 { #category : #'*SCouchDB-ViewServer' }
-SCAppContext class >> fromDictionary:aDic on:aViewServer [
+SCAppContext classSide >> fromDictionary:aDic on:aViewServer [
 	| a |
 	a:=self fromDictionary:aDic.
 	a server:aViewServer.
@@ -9,7 +9,7 @@ SCAppContext class >> fromDictionary:aDic on:aViewServer [
 ]
 
 { #category : #'*SCouchDB-ViewServer' }
-SCAppContext class >> on:aViewServer [
+SCAppContext classSide >> on:aViewServer [
 	"We need to know the server instance to send print messages"
 	| a |
 	super initialize.
