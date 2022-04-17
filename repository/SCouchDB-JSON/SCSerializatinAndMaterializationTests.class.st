@@ -9,8 +9,8 @@ SCSerializatinAndMaterializationTests >> testDictionaryOfObject2 [
 	| data json dictionaryOfObjects |
 	data := Dictionary new.
 	data 
-		at: 'one' put: NeoJSONTestObject2 example1;
-		at: 'two' put: NeoJSONTestObject2 example1.
+		at: 'one' put: SCJSONTestObject2 example1;
+		at: 'two' put: SCJSONTestObject2 example1.
 	json := SCSerializer serialize: data.
 	SCObjectsCache instance flush.
 	dictionaryOfObjects := SCMaterializer  materializeFrom: json readStream.
@@ -63,31 +63,31 @@ SCSerializatinAndMaterializationTests >> testMaps [
 { #category : #testing }
 SCSerializatinAndMaterializationTests >> testObject1 [
 	| json |
-	json := SCSerializer serialize: NeoJSONTestObject1 example1.
+	json := SCSerializer serialize: SCJSONTestObject1 example1.
 	SCObjectsCache instance flush.
 	self 
 		assert: (SCMaterializer materializeFrom: json readStream)
-		equals: NeoJSONTestObject1 example1
+		equals: SCJSONTestObject1 example1
 ]
 
 { #category : #testing }
 SCSerializatinAndMaterializationTests >> testObject2 [
 	| json |
-	json := SCSerializer serialize: NeoJSONTestObject2 example1.
+	json := SCSerializer serialize: SCJSONTestObject2 example1.
 	SCObjectsCache instance flush.
 	self 
 		assert: (SCMaterializer materializeFrom: json readStream)
-		equals: NeoJSONTestObject2 example1
+		equals: SCJSONTestObject2 example1
 ]
 
 { #category : #testing }
 SCSerializatinAndMaterializationTests >> testObject3 [
 	| json |
-	json := SCSerializer serialize: NeoJSONTestObject3 example1.
+	json := SCSerializer serialize: SCJSONTestObject3 example1.
 	SCObjectsCache instance flush.
 	self 
 		assert: (SCMaterializer materializeFrom: json readStream)
-		equals: NeoJSONTestObject3 example1
+		equals: SCJSONTestObject3 example1
 ]
 
 { #category : #testing }
