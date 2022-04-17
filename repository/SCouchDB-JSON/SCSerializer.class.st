@@ -31,7 +31,8 @@ Class {
 		'allColectionSerializedAsArray',
 		'idPropertySymbol',
 		'idField',
-		'maxDepth'
+		'maxDepth',
+		'encodeSingleQuote'
 	],
 	#category : #'SCouchDB-JSON-Core'
 }
@@ -310,7 +311,9 @@ SCSerializer >> schemes [
 			UndefinedObject -> [ :obj :stream :depth| stream nextPutAll: 'null'  ].
 			True -> [ :obj :stream :depth| stream nextPutAll: 'true'  ].
 			False -> [ :obj :stream :depth| stream nextPutAll: 'false'  ].
-			Number -> [ :obj :stream :depth| stream nextPutAll: obj asString  ].
+			Number -> [ :obj :stream :depth| stream nextPutAll: (obj isInteger 
+																					ifTrue:[obj asString] 
+																					ifFalse:[obj asFloat asString ])].
 			String -> [ :obj :stream :depth| stream nextPut:$";nextPutAll: (self escapeString:obj);nextPut:$"].
 			Array -> self blockForArrays.
 			Collection -> self blockForCollections.
@@ -334,6 +337,13 @@ SCSerializer >> serialize: anObject [
 ]
 
 { #category : #private }
+SCSerializer >> serialize: anObject to: aStream [ 
+	self serialize: anObject to: aStream depth: 1
+
+
+]
+
+{ #category : #private }
 SCSerializer >> serialize: anObject to: aStream depth: depth [
 	depth = self maxDepth 
 	ifTrue:[(self schemeFor: anObject class) value: (self emptyClassForClass:anObject class)  value: aStream value:depth +1 ]
@@ -350,10 +360,10 @@ SCSerializer >> serializeAllCollectionsAsArrays [
 { #category : #accessing }
 SCSerializer >> serializeDateAsString [
 
-	self schemes at:Date put:[ :dateObject :stream|
-		(self schemeFor: String) value: dateObject yyyymmdd value:stream ].
-	self schemes at:DateAndTime put:[ :dateObject :stream |
-		(self schemeFor: String) value: dateObject asString value:stream ]
+	self schemes at:Date put:[ :dateObject :stream :depth|
+		(self schemeFor: String) value: dateObject yyyymmdd value:stream value:depth].
+	self schemes at:DateAndTime put:[ :dateObject :stream :depth|
+		(self schemeFor: String) value: dateObject asString value:stream  value:depth ]
 ]
 
 { #category : #private }
