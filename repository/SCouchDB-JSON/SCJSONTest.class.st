@@ -5,6 +5,16 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+SCJSONTest >> deepObject [
+   | di do |
+	di := Dictionary new.
+	do := di.
+	1 to:1000 do:[:i | 
+		di := (di at: ('i',i asString) put: {'depth'->i} asDictionary) ].
+	^ do
+]
+
+{ #category : #'as yet unclassified' }
 SCJSONTest >> largeObject [
    | lo |
 	lo := Array new:5000.
@@ -105,6 +115,24 @@ SCJSONTest >> testRootSerialization [
 		self assert: mat  equals:self objectsToTestRootSerialization .
 	
 
+]
+
+{ #category : #tests }
+SCJSONTest >> testSerializeDeepObjects [
+	| ser mat dict i maxdepth|
+		maxdepth := 82 "put only even values".
+		ser :=	 self serializer maxDepth: maxdepth; serialize: self deepObject. 	
+		SCObjectsCache instance flush.	
+		mat := self materializer materialize:ser.
+		dict := mat.
+		i := 0.
+		[ dict='max_depth' ] whileFalse:[
+			i := i + 1.
+			dict := (dict at: ('i',i asString) ifAbsent:['max_depth']).
+		
+		 ].
+		"Dictionaries has two levels, associations inside dictionaries"
+		self assert: i * 2 equals: maxdepth 
 ]
 
 { #category : #tests }

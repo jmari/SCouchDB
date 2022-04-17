@@ -30,7 +30,8 @@ Class {
 		'uuidProvider',
 		'allColectionSerializedAsArray',
 		'idPropertySymbol',
-		'idField'
+		'idField',
+		'maxDepth'
 	],
 	#category : #'SCouchDB-JSON-Core'
 }
@@ -45,7 +46,7 @@ SCSerializer class >> serialize: anObject to: aStream [
 	| serializer |
 	serializer:= self new.
 	serializer pool removeAll.
-	serializer serialize: anObject to:aStream
+	serializer serialize: anObject to:aStream depth: 1
 ]
 
 { #category : #accessing }
@@ -55,13 +56,12 @@ SCSerializer >> areAllColectionsSerializedAsArray [
 
 { #category : #private }
 SCSerializer >> blockForArrays [
-^[ :obj :stream| 
-
+^[ :obj :stream :depth| 
 
 		self pool at:obj put:nil.
 		stream nextPut:$[.				
 		obj do:[:each| 	
-				self serialize: each to: stream.
+				self serialize: each to: stream depth: depth.
 				stream nextPut:$,
 		].
 
@@ -76,14 +76,14 @@ SCSerializer >> blockForArrays [
 
 { #category : #private }
 SCSerializer >> blockForAssociations [
-	^ [ :obj :stream| 
+	^ [ :obj :stream :depth| 
 				stream nextPut:$";nextPutAll: obj key asString;nextPut:$";nextPut:$:. 
-				self serialize: obj value to:stream].
+				self serialize: obj value to:stream depth: depth ].
 ]
 
 { #category : #private }
 SCSerializer >> blockForCollections [
-^[ :obj :stream| 
+^[ :obj :stream :depth| 
 	|cobj|
 
 	cobj := [obj asArray] on:Error do:[Array new].
@@ -93,7 +93,7 @@ SCSerializer >> blockForCollections [
 		(self writeIdRevInstanceOf: obj on:stream ) ifTrue:[stream nextPut:$,].
 		stream nextPutAll:'"#values":['.				
 		cobj  do:[:each| 	
-				self serialize: each to: stream.
+				self serialize: each to: stream depth: depth.
 				stream nextPut:$,
 		].
 		cobj isNotEmpty ifTrue:[stream position: stream position -1].
@@ -111,14 +111,14 @@ SCSerializer >> blockForCollections [
 
 { #category : #private }
 SCSerializer >> blockForDictionaries [
-^[ :obj :stream| 
+^[ :obj :stream :depth| 
 
 	(self pool includesKey: obj) ifFalse:[
 		self pool at:obj put:nil.
 		stream nextPut:${.		
 		(self writeIdRevInstanceOf: obj on:stream ) ifTrue:[obj ifNotEmpty:[stream nextPut:$,]].
 		obj associationsDo:[:each| 
-			self serialize:  each to: stream.
+			self serialize:  each to: stream depth: depth.
 			stream nextPut:$, ].
 		obj ifNotEmpty:[stream position: stream position -1].
 		stream nextPut:$}.
@@ -133,7 +133,7 @@ SCSerializer >> blockForDictionaries [
 { #category : #private }
 SCSerializer >> blockForObjects [
 
-^[ :obj :stream| 
+^[ :obj :stream :depth| 
 	| instanceVariables |
 	(self pool includesKey: obj) ifFalse:[
 		self pool at:obj put:nil.
@@ -149,7 +149,7 @@ SCSerializer >> blockForObjects [
 				nextPutAll: varName asString;
 				nextPut:$";
 				nextPut:$:.
-				self serialize: ( obj instVarNamed:varName ) to: stream.
+				self serialize: ( obj instVarNamed:varName ) to: stream depth: depth.
 			stream 	nextPut:$,
 			 ].
 		instanceVariables ifNotEmpty:[stream position: stream position -1].
@@ -163,7 +163,7 @@ SCSerializer >> blockForObjects [
 { #category : #private }
 SCSerializer >> blockForRootObjects [
 
-^[ :obj :rootStream| 
+^[ :obj :rootStream :depth| 
 	| instanceVariables nextObject stream|
 	stream:= WriteStream on:String new.
 	(self pool includesKey: obj) ifFalse:[
@@ -184,9 +184,9 @@ SCSerializer >> blockForRootObjects [
 				"serialize other root objects in a new Stream, we will join them later
 				 once the object is serialized, we will only include its reference"
 				nextObject class isVoyageRoot ifTrue:[
-					self serialize: nextObject to: rootStream.
+					self serialize: nextObject to: rootStream depth: depth.
 					rootStream nextPut:$,].
-				self serialize: nextObject to: stream.
+				self serialize: nextObject to: stream depth: depth.
 			stream 	nextPut:$,
 			 ].
 		instanceVariables ifNotEmpty:[stream position: stream position -1].
@@ -202,6 +202,26 @@ SCSerializer >> blockForRootObjects [
 { #category : #private }
 SCSerializer >> doNotneedIdRev: anObject [
 	^ ((anObject isSCJsonObject) & ((anObject isSCAppContext ) not))
+]
+
+{ #category : #private }
+SCSerializer >> emptyClassForClass: aClass [
+	^ {
+			UndefinedObject -> nil.
+			True -> true.
+			False -> false.
+			Number -> 0.
+			String -> 'max_depth'.
+			Array -> {'max_depth'}.
+			Collection -> {'max_depth'}.
+			Association -> ('max_depth'->'max_depth'). 
+			Dictionary -> {'max_depth'->'max_depth'} asDictionary.
+			BlockClosure -> [ :k | 'max_depth' ].
+			Object -> SCJsonObject new. 
+			} asDictionary at:aClass ifAbsent:[ SCJsonObject new ]
+	
+		 
+	
 ]
 
 { #category : #private }
@@ -240,6 +260,18 @@ SCSerializer >> idField: aField [
 	idField  := aField 
 ]
 
+{ #category : #accessing }
+SCSerializer >> maxDepth [
+
+	^ maxDepth ifNil:[ maxDepth :=  -1 ]
+]
+
+{ #category : #accessing }
+SCSerializer >> maxDepth: anObject [
+
+	maxDepth := anObject
+]
+
 { #category : #private }
 SCSerializer >> pool [
 	^ pool ifNil:[ pool := WeakIdentityKeyDictionary  new ]
@@ -257,16 +289,16 @@ SCSerializer >> schemeFor:aClass [
 SCSerializer >> schemes [
 	^ schemes ifNil:[
 		schemes := {
-			UndefinedObject -> [ :obj :stream| stream nextPutAll: 'null'  ].
-			True -> [ :obj :stream| stream nextPutAll: 'true'  ].
-			False -> [ :obj :stream| stream nextPutAll: 'false'  ].
-			Number -> [ :obj :stream| stream nextPutAll: obj asString  ].
-			String -> [ :obj :stream| stream nextPut:$";nextPutAll: (self escapeString:obj);nextPut:$"].
+			UndefinedObject -> [ :obj :stream :depth| stream nextPutAll: 'null'  ].
+			True -> [ :obj :stream :depth| stream nextPutAll: 'true'  ].
+			False -> [ :obj :stream :depth| stream nextPutAll: 'false'  ].
+			Number -> [ :obj :stream :depth| stream nextPutAll: obj asString  ].
+			String -> [ :obj :stream :depth| stream nextPut:$";nextPutAll: (self escapeString:obj);nextPut:$"].
 			Array -> self blockForArrays.
 			Collection -> self blockForCollections.
 			Association -> self blockForAssociations. 
 			Dictionary -> self blockForDictionaries.
-			BlockClosure -> [ :obj :stream | stream nextPut:$";nextPutAll:(self escapeString: obj sourceCode);nextPut:$"].
+			BlockClosure -> [ :obj :stream :depth| stream nextPut:$";nextPutAll:(self escapeString: obj sourceCode);nextPut:$"].
 			Object -> self blockForObjects. 
 			} asDictionary ]
 	
@@ -277,16 +309,17 @@ SCSerializer >> serialize: anObject [
 	| str |
 	self pool removeAll.
 	str := WriteStream on:String new.
-	self serialize:anObject to: str.
+	self serialize:anObject to: str depth: 1.
 	^ str contents	
 
 
 ]
 
 { #category : #private }
-SCSerializer >> serialize: anObject to: aStream [
-
-	(self schemeFor: anObject class) value: anObject value: aStream.
+SCSerializer >> serialize: anObject to: aStream depth: depth [
+	depth = self maxDepth 
+	ifTrue:[(self schemeFor: anObject class) value: (self emptyClassForClass:anObject class)  value: aStream value:depth +1 ]
+	ifFalse:[ (self schemeFor: anObject class) value: anObject value: aStream value:depth +1 ]
 
 
 ]
