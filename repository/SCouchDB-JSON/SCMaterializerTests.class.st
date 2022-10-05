@@ -135,6 +135,15 @@ SCMaterializerTests >> testMaps [
 ]
 
 { #category : #testing }
+SCMaterializerTests >> testNoQuotedProperties [
+	| reader |
+	reader := [ :input | SCMaterializer materializeFrom: input readStream].
+	
+	self assert: (reader value: '{x:1,y:2}') equals: (SCJsonObject newFromPairs: #( 'x' 1 'y' 2)).
+	self assert: (reader value: '{x  :1,"y" :2}') equals: (SCJsonObject newFromPairs: #( 'x' 1 'y' 2)).	
+]
+
+{ #category : #testing }
 SCMaterializerTests >> testNonBMPCharacterDecoding [
 	"Characters not in the Basic Multilingual Plane are encoded as a 4 HEX digits unicode"
 

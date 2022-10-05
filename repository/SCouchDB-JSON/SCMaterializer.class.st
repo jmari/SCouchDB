@@ -218,6 +218,12 @@ SCMaterializer >> numbersMayContain: aChar [
 ]
 
 { #category : #parsing }
+SCMaterializer >> numbersStartByContain: aChar [
+	"a number should not start by + we leave it anyway"
+	^ aChar isDigit or: [#($- $+) includes: aChar]
+]
+
+{ #category : #parsing }
 SCMaterializer >> readAny [
 	"This is the main entry point for the JSON parser. See also readFrom: on the class side."
 	| c |
@@ -230,7 +236,7 @@ SCMaterializer >> readAny [
 	c == $f ifTrue: [^ self consume: 'false' returning: false].
 	c == $n ifTrue: [^ self consume: 'null' returning: nil].
 	
-	(self numbersMayContain: c) ifTrue: [^ self readNumber].
+	(self numbersStartByContain: c) ifTrue: [^ self readNumber].
 	SCJsonSyntaxError signal: 'Unknown Json input'
 ]
 
@@ -264,10 +270,16 @@ SCMaterializer >> readDictionary [
 					self skipWhitespace]
 			ifFalse: [needComma := true].
 "		k := self readAny. "
-		(stream peekFor: $") ifFalse: [SCJsonSyntaxError signal: 'Key in dictionary must be string'].
-		k := self readString.
-		self skipWhitespace.
-		(stream peekFor: $:) ifFalse: [SCJsonSyntaxError signal: 'Missing colon'].
+		(stream peekFor: $") 
+			ifTrue:[ 
+				k:= self readString.
+				self skipWhitespace.
+				(stream peekFor: $:) ifFalse: [SCJsonSyntaxError signal: 'Missing colon']. ]
+			ifFalse: [ 
+				k:= self readUnquotedPropertyName.
+				self skipWhitespace. ].
+		
+		
 		v := self readAny.
 		m at: k put: v.
 	] repeat.
@@ -309,6 +321,20 @@ SCMaterializer >> readString [
 		c == $\
 			ifTrue: [s nextPut: self interpretStringEscape.]
 			ifFalse: [c == $" ifTrue: [^ s contents.].
+					s nextPut: c]
+	] repeat.
+]
+
+{ #category : #private }
+SCMaterializer >> readUnquotedPropertyName [
+	| s c |
+	s := WriteStream on: ''.
+	[
+		c := stream next.
+		c == $\
+			ifTrue: [s nextPut: self interpretStringEscape.]
+			ifFalse: [(c == $:) ifTrue: [ ^ s contents trimBoth].
+					(c isNil) ifTrue:[SCJsonSyntaxError signal: 'Missing colon'].
 					s nextPut: c]
 	] repeat.
 ]
